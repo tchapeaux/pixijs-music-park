@@ -1,75 +1,87 @@
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Parallax Scrolling Demo</title>
-    <style>
-      body { background-color: #000000; }
-      canvas { background-color: #222222; }
-    </style>
-  </head>
-  <body onload="init()">
-    <div align="center">
-      <canvas id="game-canvas" width="1024" height="512"></canvas>
-    </div>
-    <script src="thirdparty/pixi.min.js"></script>
-    <script src="thirdparty/jquery.min.js"></script>
-    <script>
-      function init() {
-        keysPressed = new Set();
-        window.addEventListener('keydown', keyDown, false);
-        window.addEventListener('keyup', keyUp, false);
-        function keyDown(e) {
-            keysPressed.add(e.keyCode);
-        }
-        function keyUp(e) {
-            keysPressed.delete(e.keyCode);
-        }
-        stage = new PIXI.Container();
-        renderer = PIXI.autoDetectRenderer(
-          document.getElementById("game-canvas").width,
-          document.getElementById("game-canvas").height,
-          {view:document.getElementById("game-canvas")}
-        );
+    <head>
+        <meta charset="UTF-8">
+        <title>Parallax Scrolling Demo</title>
+        <style>
+            body { background-color: #000000; }
+            canvas { background-color: #222222; }
+        </style>
+    </head>
+    <body onload="init()">
+        <div align="center">
+            <canvas id="game-canvas" width="1024" height="512"></canvas>
+        </div>
+        <script src="thirdparty/pixi.min.js"></script>
+        <script src="thirdparty/jquery.min.js"></script>
+        <script>
+            function init() {
+                keysPressed = new Set();
+                oldTimeStamp = Date.now()
+                window.addEventListener('keydown', keyDown, false);
+                window.addEventListener('keyup', keyUp, false);
+                function keyDown(e) {
+                        keysPressed.add(e.keyCode);
+                }
+                function keyUp(e) {
+                        keysPressed.delete(e.keyCode);
+                }
+                stage = new PIXI.Container();
+                wScr = document.getElementById("game-canvas").width;
+                hScr = document.getElementById("game-canvas").height;
+                renderer = PIXI.autoDetectRenderer(
+                    wScr,
+                    hScr,
+                    {view:document.getElementById("game-canvas")}
+                );
 
-        var farTexture = PIXI.Texture.fromImage("resources/bg-far-2.png");
-        far = new PIXI.extras.TilingSprite(farTexture, 1024, 256);
-        far.position.x = 0;
-        far.position.y = 0;
-        far.tilePosition.x = 0;
-        far.tilePosition.y = 0;
-        stage.addChild(far);
+                var farTexture = PIXI.Texture.fromImage("resources/bg-far-2.png");
+                far = new PIXI.extras.TilingSprite(farTexture, wScr, 256);
+                far.position.x = 0;
+                far.position.y = 0;
+                far.tilePosition.x = 0;
+                far.tilePosition.y = 0;
+                stage.addChild(far);
 
-        var midTexture = PIXI.Texture.fromImage("resources/bg-mid-2.png");
-        mid = new PIXI.extras.TilingSprite(midTexture, 1024, 256);
-        mid.position.x = 0;
-        mid.position.y = 128;
-        mid.tilePosition.x = 0;
-        mid.tilePosition.y = 0;
-        stage.addChild(mid);
+                var midTexture = PIXI.Texture.fromImage("resources/bg-mid-2.png");
+                mid = new PIXI.extras.TilingSprite(midTexture, wScr, 256);
+                mid.position.x = 0;
+                mid.position.y = hScr / 4;
+                mid.tilePosition.x = 0;
+                mid.tilePosition.y = 0;
+                stage.addChild(mid);
 
-        player = new PIXI.Sprite.fromImage("resources/djembeman.png");
-        player.scale = new PIXI.Point(0.5, 0.5);
-        stage.addChild(player);
+                ground = new PIXI.Graphics();
+                ground.beginFill(0xFFFFFF);
+                ground.drawRect(0, hScr / 4 + 256, wScr, hScr);
+                stage.addChild(ground);
 
-        requestAnimationFrame(update);
+                player = new PIXI.Sprite.fromImage("resources/djembeman.png");
+                player.position.x = 10;
+                player.position.y = hScr / 4 + 256 + 10;
+                player.scale = new PIXI.Point(0.5, 0.5);
+                stage.addChild(player);
 
-        function update() {
-          // get keycode from http://keycode.info/
-          var direction = 0;
-          var ds = 1; // should be a parameter of update()
-          if (keysPressed.has(37) /* LEFT ARROW */) {
-            direction = -1;
-          } else if (keysPressed.has(39) /* RIGHT ARROW*/) {
-            direction = 1;
-          }
-          far.tilePosition.x -= 0.128 * direction * ds;
-          mid.tilePosition.x -= 0.64 * direction * ds;
+                requestAnimationFrame(update);
 
-          renderer.render(stage);
+                function update(timestamp) {
+                    ds = (timestamp - oldTimeStamp) / 1000;
 
-          requestAnimationFrame(update);
-        }
-      }
-    </script>
-  </body>
+                    // get keycode from http://keycode.info/
+                    var direction = 0;
+                    var ds = 1; // should be a parameter of update()
+                    if (keysPressed.has(37) /* LEFT ARROW */) {
+                        direction = -1;
+                    } else if (keysPressed.has(39) /* RIGHT ARROW*/) {
+                        direction = 1;
+                    }
+                    far.tilePosition.x -= 0.128 * direction * ds;
+                    mid.tilePosition.x -= 0.64 * direction * ds;
+
+                    renderer.render(stage);
+
+                    requestAnimationFrame(update);
+                }
+            }
+        </script>
+    </body>
 </html>

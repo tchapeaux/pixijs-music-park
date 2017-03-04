@@ -1,5 +1,6 @@
 thirdparty/
 .vscode
+*.zip
 
 # Windows image file caches
 Thumbs.db
