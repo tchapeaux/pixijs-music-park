@@ -2,10 +2,9 @@ function Game() {
     this.entities = [];
     this.level = null;
 
-
     this.player = new Player();
     this.player.set_position(10, hScr / 4 + 256 + 10);
-    
+
     this.loadmap("resources/map/map1.json");
 }
 
@@ -13,7 +12,7 @@ Game.prototype.add_entity = function(ent){
     this.entities.push(ent);
     if(ent.sprite != null)
         stage.addChild(ent.sprite);
-}    
+}
 
 Game.prototype.loadmap = function(map){
     if(this.level != null)
@@ -28,8 +27,7 @@ Game.prototype.loadmap = function(map){
     this.entities = [];
     this.level = new Level(map);
     stage.addChild(this.level.container);
-    
-    
+
     console.log(this.level);
     console.log(this.level.teleports);
     /*
@@ -42,8 +40,6 @@ Game.prototype.loadmap = function(map){
 }
 
 Game.prototype.update = function(ds) {
-
-    
     var currentcount = this.entities.length;
     // regular update && entities delete
     for(var i=0; i < currentcount; i++)
