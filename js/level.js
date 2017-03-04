@@ -4,7 +4,7 @@ var Level = function(jsonfile) {
     this.ready = false;
     this.container = new PIXI.Container();
 
-    var level = this;  // make it accessible in scope
+    var level = this;  // make 'this' accessible in scope
     $.getJSON(jsonfile, "", function(data) {
         level.ready = true;
         level.json = data;
@@ -15,9 +15,9 @@ var Level = function(jsonfile) {
         bgTexture.position.y = 0;
         level.container.addChild(bgTexture);
 
-        var area = level.json.map.area;
-
         level.teleports = level.json.map.teleports
+
+        var area = level.json.map.area;
 
         level.area = new PIXI.Rectangle(area.x, area.y, area.w, area.h);
         // Uncomment below for debug display

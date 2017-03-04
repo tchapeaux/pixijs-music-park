@@ -28,5 +28,4 @@ Player.prototype.computemoves = function(ds) {
 
     // todo : put that in a general entity function that deals with level collisions too
     this.set_position(this.position.x + this.velocity.x, this.position.y + this.velocity.y);
-
 }
