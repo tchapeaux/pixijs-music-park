@@ -31,10 +31,19 @@
         }],
         "teleports": [
             {
-                "x":1024,
+                "x":1000,
                 "y": 278,
                 "w": 5,
                 "h": 234,
+                "to_map": "resources/map/map2.json",
+                "to_x": 10,
+                "to_y": null
+            },
+            {
+                "x": 20,
+                "y": 278,
+                "w": 20,
+                "h": 20,
                 "to_map": "resources/map/map2.json",
                 "to_x": 10,
                 "to_y": null

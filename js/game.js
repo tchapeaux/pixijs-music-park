@@ -39,12 +39,10 @@ Game.prototype.loadmap = function(map){
 Game.prototype.loadmap_finish = function() {
     console.log("level", this.level);
     console.log("level teleports", this.level.teleports);
-    /*
     for(var i = 0; i < this.level.teleports.length; i++)
     {
-        this.add_entity(new Teleport(this.level.teleports[i].x, this.level.teleports[i].y,  this.level.teleports[i].w, this.level.teleports[i].h));
+        this.add_entity(new Teleport(this.level.teleports[i].x, this.level.teleports[i].y, this.level.teleports[i].w, this.level.teleports[i].h));
     }
-    */
     this.level_loaded = true;
 }
 
@@ -73,10 +71,12 @@ Game.prototype.update = function(ds) {
             // collisions between entities
             for(var j=i + 1; j < currentcount; j++)
             {
-                if(ent.collide_with(this.entities[j]))
+                var otherEnt = this.entities[j];
+                if(ent.collide_with(otherEnt))
                 {
-                    ent.collision_action(this.entities[j]);
-                    this.entities[j].collision_action(ent);
+                    console.log("Collision detected", ent, otherEnt);
+                    ent.collision_action(otherEnt);
+                    otherEnt.collision_action(ent);
                 }
             }
         }

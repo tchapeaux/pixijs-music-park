@@ -23,32 +23,33 @@ Entity.prototype.update = function(ds) {
     this.computemoves(ds);
 }
 
+// update position of entity
 Entity.prototype.computemoves = function(ds) {
-
-    // default one do nothing
+    // default: do nothing
 }
 
 
 // check if current entity collides with another
 Entity.prototype.collide_with = function(ent) {
-            if (ent == this)
-                return false;
+    if (ent == this) {
+        console.log("WARNING - entity checked for collision against itself")
+        return false;
+    }
 
-            var test1 = this.position.x + this.hitbox.left < (ent.position.x + ent.hitbox.left + ent.hitbox.width);
-            var test2 = (this.position.x + this.position.left + this.position.width) > ent.position.x + ent.hitbox.left;
-            var test3 = this.position.y + this.position.top < (ent.position.y + ent.hitbox.top + ent.hitbox.height);
-            var test4 = (this.position.y + this.position.top + this.position.height) > ent.position.y + ent.hitbox.top;
-            // basic rectangle collision
-            if (
-                    test1 && test2 && test3 && test4
-                )
-                return true;
-            else
-                return false;
+    // basic rectangle collision between both hitboxes
+    var test1 = this.position.x + this.hitbox.left < (ent.position.x + ent.hitbox.left + ent.hitbox.width);
+    var test2 = (this.position.x + this.position.left + this.position.width) > ent.position.x + ent.hitbox.left;
+    var test3 = this.position.y + this.position.top < (ent.position.y + ent.hitbox.top + ent.hitbox.height);
+    var test4 = (this.position.y + this.position.top + this.position.height) > ent.position.y + ent.hitbox.top;
+    if (
+            test1 && test2 && test3 && test4
+        )
+        return true;
+    else
+        return false;
 }
 
 // action to take if one entity collides with another
 Entity.prototype.collision_action = function(entity) {
-
-    // default one do nothing
+    // default: do nothing (to be re-implemented by subclasses)
 }
