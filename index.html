@@ -14,7 +14,12 @@
         <script src="thirdparty/pixi.min.js"></script>
         <script src="thirdparty/jquery.min.js"></script>
         <script src="js/game.js"></script>
+        <script src="js/level.js"></script>
         <script>
+            // Disable cache globally
+            $(document).ready(function() {
+                $.ajaxSetup({ cache: false });
+            });
             function init() {
                 keysPressed = new Set();
                 window.addEventListener('keydown', keyDown, false);

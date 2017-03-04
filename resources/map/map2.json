@@ -1,0 +1,29 @@
+{
+    "map":  {
+        "name": "Test map number two",
+        "image":"resources/map2.png",
+        "area": {
+            "x": 0,
+            "y": 278,
+            "w": 761,
+            "h": 234
+        },
+        "nogo":[
+		{"x":654, "y":234, "w": 43, "h": 104},
+		{"x":302, "y":278, "w": 29, "h": 14},
+		{"x":586, "y":278, "w": 29, "h": 14}
+        ],
+        "crowd-level": 0.3,
+        "policeness": 1,
+        "greenareas": [{
+            "x": 274,
+            "y": 278,
+            "w": 371,
+            "h": 52,
+            "bonus": 2.5
+        }],
+        "teleports": [
+            {"x":0, "y": 278, "w": 5, "h": 234, "to_map": "resources/map/map1.json", "to_x": 1014, "to_y": null }
+        ]
+    }
+}
