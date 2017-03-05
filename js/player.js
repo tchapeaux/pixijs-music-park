@@ -1,7 +1,9 @@
 var Player = function() {
     Entity.call(this);
     this.name = "Player";
-    this.sprite = new PIXI.Sprite.fromImage("resources/djembeman.png");
+    this.sprite_idle = new PIXI.Sprite.fromImage("resources/djembeman.png");
+    this.sprite_playing = new PIXI.Sprite.fromImage("resources/djembeman_playing.png");
+    this.sprite = this.sprite_idle;
     this.hitbox = new PIXI.Rectangle(15, 35, 25, 10);
     this.sprite.scale = new PIXI.Point(0.5, 0.5);
 }
