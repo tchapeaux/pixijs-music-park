@@ -5,6 +5,8 @@ function Game() {
 
     this.player = new Player();
     this.loadmap("resources/map/map1.json");
+
+    this.musicband = new MusicBand();
 }
 
 Game.prototype.add_entity = function(ent){
@@ -80,5 +82,6 @@ Game.prototype.update = function(ds) {
                 }
             }
         }
+        this.musicband.update(ds);
     }
 }

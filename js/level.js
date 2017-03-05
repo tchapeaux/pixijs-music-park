@@ -34,14 +34,12 @@ var Level = function(jsonfile) {
         level.ground.beginFill(0x00FF00, 0.5);
         for (var j = greenzones.length - 1; j >= 0; j--) {
             var green = greenzones[j];
-            console.log("That is one greenarea", green);
             level.ground.drawRect(green.x, green.y, green.w, green.h);
         }
         var teleports = level.teleports;
         level.ground.beginFill(0x0000FF, 0.5);
         for (var k = teleports.length - 1; k >= 0; k--) {
             var tel = teleports[k];
-            console.log("That is one teleporter", tel);
             level.ground.drawRect(tel.x, tel.y, tel.w, tel.h);
         }
         level.container.addChild(level.ground);
