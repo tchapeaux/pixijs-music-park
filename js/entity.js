@@ -38,9 +38,9 @@ Entity.prototype.collide_with = function(ent) {
 
     // basic rectangle collision between both hitboxes
     var test1 = this.position.x + this.hitbox.left < (ent.position.x + ent.hitbox.left + ent.hitbox.width);
-    var test2 = (this.position.x + this.position.left + this.position.width) > ent.position.x + ent.hitbox.left;
-    var test3 = this.position.y + this.position.top < (ent.position.y + ent.hitbox.top + ent.hitbox.height);
-    var test4 = (this.position.y + this.position.top + this.position.height) > ent.position.y + ent.hitbox.top;
+    var test2 = (this.position.x + this.hitbox.left + this.hitbox.width) > ent.position.x + ent.hitbox.left;
+    var test3 = this.position.y + this.hitbox.top < (ent.position.y + ent.hitbox.top + ent.hitbox.height);
+    var test4 = (this.position.y + this.hitbox.top + this.hitbox.height) > ent.position.y + ent.hitbox.top;
     if (
             test1 && test2 && test3 && test4
         )

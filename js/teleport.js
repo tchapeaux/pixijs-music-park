@@ -1,6 +1,7 @@
-var Teleport = function(x, y, w, h) {
+var Teleport = function(x, y, w, h, jsonpath) {
     Entity.call(this);
     this.hitbox = new PIXI.Rectangle(0, 0, w, h);
+    this.jsonpath = jsonpath
     this.set_position(x, y);
 }
 
@@ -9,9 +10,9 @@ Teleport.prototype.constructor = Teleport;
 
 // action to take if one entity collides with another
 Teleport.prototype.collision_action = function(entity) {
-    console.log("A Teleporter has collided with", entity);
     if(entity === game.player)
     {
-        console.log("collide!");
+        console.log("Loading map", this.jsonpath);
+        game.loadmap(this.jsonpath);
     }
 }
