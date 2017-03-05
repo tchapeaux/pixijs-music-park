@@ -1,30 +1,27 @@
 function MusicBand() {
+    // Define music tracks. They will be started in update() loop when they are loaded
+    // Volume set to 0 at they are supposed to play silently before being triggered
     this.music_tracks = {};
     this.music_tracks.guitar = new Howl({
         src: ['resources/audio_raw/gravityfall_jam_guitar.ogg'],
         volume: 0,
-        loop: true
+        loop: false,
     });
     this.music_tracks.drums = new Howl({
         src: ['resources/audio_raw/gravityfall_jam_drums.ogg'],
         volume: 0,
-        loop: true
+        loop: false,
     });
     this.music_tracks.ukulele_flute = new Howl({
         src: ['resources/audio_raw/gravityfall_jam_ukulele_flute.ogg'],
         volume: 0,
-        loop: true
+        loop: false,
     });
     this.music_tracks.voices = new Howl({
         src: ['resources/audio_raw/gravityfall_jam_voices.ogg'],
         volume: 0,
-        loop: true
+        loop: false,
     });
-    // Launch all sounds at level 0
-    this.music_tracks.guitar.play();
-    this.music_tracks.drums.play();
-    this.music_tracks.ukulele_flute.play();
-    this.music_tracks.voices.play();
 }
 
 MusicBand.prototype.toggleMusicTrack = function(track) {
@@ -46,4 +43,26 @@ MusicBand.prototype.update = function(ds) {
     if (keysPressed.has(82 /* R */)) {
         this.toggleMusicTrack(this.music_tracks.voices);
     }
+
+    // Track synchronization
+    // wait for all to be loaded and not playing to launch them simultaneously
+    if (
+        (this.music_tracks.drums.state() == "loaded") &&
+        (this.music_tracks.guitar.state() == "loaded") &&
+        (this.music_tracks.ukulele_flute.state() == "loaded") &&
+        (this.music_tracks.voices.state() == "loaded") &&
+        (!this.music_tracks.drums.playing()) &&
+        (!this.music_tracks.guitar.playing()) &&
+        (!this.music_tracks.ukulele_flute.playing()) &&
+        (!this.music_tracks.voices.playing()) &&
+        true
+       )
+    {
+        console.log("Restarting tracks");
+        this.music_tracks.drums.play()
+        this.music_tracks.guitar.play()
+        this.music_tracks.ukulele_flute.play()
+        this.music_tracks.voices.play()
+    }
+
 }

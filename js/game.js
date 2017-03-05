@@ -37,10 +37,8 @@ Game.prototype.loadmap = function(map){
     this.level = new Level(map);
     this.level_loaded = false;
     stage.addChild(this.level.container);
-    console.log("Adding player to entities", this.player);
     this.player.set_position(10, hScr / 4 + 256 + 10);
     this.add_entity(this.player);
-    console.log("Entities after adding player:", this.player);
 
     // Rest of loading map is done in loadmap_finish (after the JSON has loaded)
 }
