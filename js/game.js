@@ -6,6 +6,8 @@ function Game() {
     this.player = new Player();
     this.loadmap("resources/map/map1.json");
 
+    this.nextteleport = null;
+    
     this.musicband = new MusicBand();
 }
 
@@ -27,9 +29,6 @@ Game.prototype.loadmap = function(map){
         if (!ent instanceof Player) {
             ent.should_delete = true;
         }
-        if(ent.sprite != null) {
-            stage.removeChild(ent.sprite);
-        }
     }
     this.entities = [];
 
@@ -47,10 +46,18 @@ Game.prototype.loadmap_finish = function() {
     for(var i = 0; i < this.level.teleports.length; i++)
     {
         var tel = this.level.teleports[i];
-        this.add_entity(new Teleport(tel.x, tel.y, tel.w, tel.h, tel.to_map));
+        this.add_entity(new Teleport(tel.x, tel.y, tel.w, tel.h, tel.to_map, tel.to_x, tel.to_y));
     }
-    this.player.set_position(30, hScr / 4 + 256 + 10);
-
+    if(this.nextteleport == null)
+        this.player.set_position(30, hScr / 4 + 256 + 10);
+    else
+    {
+        console.log(this.nextteleport.to_x == null ? this.player.position.x : this.nextteleport.to_x, this.nextteleport.to_y == null ? this.player.position.y : this.nextteleport.to_y);
+        this.player.set_position(this.nextteleport.to_x == null ? this.player.position.x : this.nextteleport.to_x, this.nextteleport.to_y == null ? this.player.position.y : this.nextteleport.to_y);
+        console.log(this.player.position);
+    }
+    this.nextteleport = null;
+    
     this.crowd = new Crowd();
 
     this.level_loaded = true;
@@ -73,6 +80,9 @@ Game.prototype.update = function(ds) {
             if (ent.should_delete)
             {
                 this.entities.splice(i, 1);
+                if(ent.sprite != null) {
+                    stage.removeChild(ent.sprite);
+                }
                 currentcount--;
                 i--;
                 continue;
@@ -90,17 +100,12 @@ Game.prototype.update = function(ds) {
             }
         }
 
-        // Check for teleporter activations
-        for (var k = this.entities.length - 1; k >= 0; k--) {
-            var ent = this.entities[k];
-            if (ent instanceof Teleport) {
-                if (ent.activated === true) {
-                    this.loadmap(ent.jsonpath);
-                    break;
-                }
-            }
+        if(this.nextteleport != null)
+        {
+            this.loadmap(this.nextteleport.jsonpath);
+            return;
         }
-
+        
         this.crowd.update(ds);
         this.musicband.update(ds);
     }
