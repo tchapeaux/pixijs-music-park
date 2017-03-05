@@ -52,9 +52,7 @@ Game.prototype.loadmap_finish = function() {
         this.player.set_position(30, hScr / 4 + 256 + 10);
     else
     {
-        console.log(this.nextteleport.to_x == null ? this.player.position.x : this.nextteleport.to_x, this.nextteleport.to_y == null ? this.player.position.y : this.nextteleport.to_y);
         this.player.set_position(this.nextteleport.to_x == null ? this.player.position.x : this.nextteleport.to_x, this.nextteleport.to_y == null ? this.player.position.y : this.nextteleport.to_y);
-        console.log(this.player.position);
     }
     this.nextteleport = null;
     
