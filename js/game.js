@@ -45,6 +45,9 @@ Game.prototype.loadmap_finish = function() {
     {
         this.add_entity(new Teleport(this.level.teleports[i].x, this.level.teleports[i].y, this.level.teleports[i].w, this.level.teleports[i].h));
     }
+
+    this.crowd = new Crowd();
+
     this.level_loaded = true;
 }
 
@@ -82,6 +85,8 @@ Game.prototype.update = function(ds) {
                 }
             }
         }
+
+        this.crowd.update(ds);
         this.musicband.update(ds);
     }
 }
