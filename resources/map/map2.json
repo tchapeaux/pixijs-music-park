@@ -23,7 +23,7 @@
             "bonus": 2.5
         }],
         "teleports": [
-            {"x":0, "y": 278, "w": 5, "h": 234, "to_map": "resources/map/map1.json", "to_x": 1014, "to_y": null }
+            {"x":0, "y": 278, "w": 5, "h": 234, "to_map": "resources/map/map1.json", "to_x": 960, "to_y": null }
         ]
     }
 }
