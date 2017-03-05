@@ -46,7 +46,22 @@ var Level = function(jsonfile) {
     });
 }
 
-Level.prototype.intersects = function(x, y, w, h) {
-    // body...
-
+Level.prototype.is_valid_position = function(x, y, w, h) {
+    var posRect = {'x': x, 'y': y, 'w': w, 'h': h};
+    var areaRect = this.json.map.area;
+    // check position is in area
+    if (!containsRectangle(areaRect, posRect)) {
+        // console.log("Invalid position: not in area");
+        return false;
+    }
+    // check against obstacles
+    for (var i = this.json.map.nogo.length - 1; i >= 0; i--) {
+        var nogozone = this.json.map.nogo[i];
+        if (intersectRectangles(posRect, nogozone)) {
+            // console.log("Invalid position: intersects an obstacle");
+            return false;
+        }
+    }
+    // Otherwise, position is valid
+    return true;
 };

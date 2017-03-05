@@ -37,18 +37,19 @@ Game.prototype.loadmap = function(map){
     this.level = new Level(map);
     this.level_loaded = false;
     stage.addChild(this.level.container);
-    this.player.set_position(10, hScr / 4 + 256 + 10);
     this.add_entity(this.player);
 
     // Rest of loading map is done in loadmap_finish (after the JSON has loaded)
 }
 
 Game.prototype.loadmap_finish = function() {
+    // Finish initialization of level when JSON has loaded
     for(var i = 0; i < this.level.teleports.length; i++)
     {
         var tel = this.level.teleports[i];
         this.add_entity(new Teleport(tel.x, tel.y, tel.w, tel.h, tel.to_map));
     }
+    this.player.set_position(30, hScr / 4 + 256 + 10);
 
     this.crowd = new Crowd();
 

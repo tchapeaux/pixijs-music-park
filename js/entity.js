@@ -8,7 +8,16 @@ var Entity = function() {
 }
 
 Entity.prototype.set_position = function(x, y){
-    this.name = null;
+    var hb = this.hitbox;
+    var is_valid_pos = game.level.is_valid_position(
+        x + hb.left,
+        y + hb.top,
+        hb.width,
+        hb.height
+    );
+    if (!is_valid_pos) {
+        return;  // cancel move
+    }
     this.position.x = x;
     this.position.y = y;
     if(this.sprite != null){
@@ -37,16 +46,19 @@ Entity.prototype.collide_with = function(ent) {
     }
 
     // basic rectangle collision between both hitboxes
-    var test1 = this.position.x + this.hitbox.left < (ent.position.x + ent.hitbox.left + ent.hitbox.width);
-    var test2 = (this.position.x + this.hitbox.left + this.hitbox.width) > ent.position.x + ent.hitbox.left;
-    var test3 = this.position.y + this.hitbox.top < (ent.position.y + ent.hitbox.top + ent.hitbox.height);
-    var test4 = (this.position.y + this.hitbox.top + this.hitbox.height) > ent.position.y + ent.hitbox.top;
-    if (
-            test1 && test2 && test3 && test4
-        )
-        return true;
-    else
-        return false;
+    hitboxThis = {
+        'x': this.position.x + this.hitbox.left,
+        'y': this.position.y + this.hitbox.top,
+        'w': this.hitbox.width,
+        'h': this.hitbox.height
+    };
+    hitboxEnt = {
+        'x': ent.position.x + ent.hitbox.left,
+        'y': ent.position.y + ent.hitbox.top,
+        'w': ent.hitbox.width,
+        'h': ent.hitbox.height
+    };
+    return intersectRectangles(hitboxThis, hitboxEnt);
 }
 
 // action to take if one entity collides with another
