@@ -5,17 +5,19 @@ var Entity = function() {
     this.hitbox = new PIXI.Rectangle(0, 0, 1, 1);
     this.base_speed = 100;
     this.should_delete = false;
+    this.ghost = false;
 }
 
 Entity.prototype.set_position = function(x, y){
     var hb = this.hitbox;
-    var is_valid_pos = game.level.is_valid_position(
+    var is_valid_pos = this.ghost === true || game.level.is_valid_position(
         x + hb.left,
         y + hb.top,
         hb.width,
         hb.height
     );
     if (!is_valid_pos) {
+        // todo : not just cancel move but check what position would fit given actual position and velocity
         return;  // cancel move
     }
     this.position.x = x;

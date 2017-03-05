@@ -3,6 +3,8 @@ var Teleport = function(x, y, w, h, jsonpath) {
     this.hitbox = new PIXI.Rectangle(0, 0, w, h);
     this.jsonpath = jsonpath
     this.activated = false;
+    this.ghost = true;
+    
     this.set_position(x, y);
 }
 
@@ -13,6 +15,7 @@ Teleport.prototype.constructor = Teleport;
 Teleport.prototype.collision_action = function(entity) {
     if(entity === game.player)
     {
+        console.log('oui?');
         // Mark Teleporter as activated
         this.activated = true;
     }
