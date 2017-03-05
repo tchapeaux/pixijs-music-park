@@ -2,6 +2,7 @@ var Teleport = function(x, y, w, h, jsonpath) {
     Entity.call(this);
     this.hitbox = new PIXI.Rectangle(0, 0, w, h);
     this.jsonpath = jsonpath
+    this.activated = false;
     this.set_position(x, y);
 }
 
@@ -12,7 +13,7 @@ Teleport.prototype.constructor = Teleport;
 Teleport.prototype.collision_action = function(entity) {
     if(entity === game.player)
     {
-        console.log("Loading map", this.jsonpath);
-        game.loadmap(this.jsonpath);
+        // Mark Teleporter as activated
+        this.activated = true;
     }
 }

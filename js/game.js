@@ -24,16 +24,23 @@ Game.prototype.loadmap = function(map){
     for(var i = 0; i < this.entities.length; i++)
     {
         ent = this.entities[i];
-        if(ent.sprite != null)
+        if (!ent instanceof Player) {
+            ent.should_delete = true;
+        }
+        if(ent.sprite != null) {
             stage.removeChild(ent.sprite);
+        }
     }
     this.entities = [];
 
     // Load level and place player
     this.level = new Level(map);
+    this.level_loaded = false;
     stage.addChild(this.level.container);
+    console.log("Adding player to entities", this.player);
     this.player.set_position(10, hScr / 4 + 256 + 10);
     this.add_entity(this.player);
+    console.log("Entities after adding player:", this.player);
 
     // Rest of loading map is done in loadmap_finish (after the JSON has loaded)
 }
@@ -80,6 +87,17 @@ Game.prototype.update = function(ds) {
                 {
                     ent.collision_action(otherEnt);
                     otherEnt.collision_action(ent);
+                }
+            }
+        }
+
+        // Check for teleporter activations
+        for (var k = this.entities.length - 1; k >= 0; k--) {
+            var ent = this.entities[k];
+            if (ent instanceof Teleport) {
+                if (ent.activated === true) {
+                    this.loadmap(ent.jsonpath);
+                    break;
                 }
             }
         }
