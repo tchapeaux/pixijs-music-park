@@ -46,13 +46,15 @@ Game.prototype.loadmap_finish = function() {
     for(var i = 0; i < this.level.teleports.length; i++)
     {
         var tel = this.level.teleports[i];
-        this.add_entity(new Teleport(tel.x, tel.y, tel.w, tel.h, tel.to_map, tel.to_x, tel.to_y));
+        var objtel = new Teleport(tel.x, tel.y, tel.width, tel.height, tel.to_map, tel.to_x, tel.to_y);
+        console.log(objtel);
+        this.add_entity(objtel);
     }
     if(this.nextteleport == null)
         this.player.set_position(30, hScr / 4 + 256 + 10);
     else
     {
-        this.player.set_position(this.nextteleport.to_x == null ? this.player.position.x : this.nextteleport.to_x, this.nextteleport.to_y == null ? this.player.position.y : this.nextteleport.to_y);
+        this.player.set_position(this.nextteleport.to_x == "" ? this.player.position.x : this.nextteleport.to_x, this.nextteleport.to_y == "" ? this.player.position.y : this.nextteleport.to_y);
     }
     this.nextteleport = null;
     
@@ -60,15 +62,15 @@ Game.prototype.loadmap_finish = function() {
 
     this.level_loaded = true;
     for(var i=0; i < (10 * this.level.crowdLevel); i++){
-        if(game.level.json.map.walking_paths == null){
+        if(game.level.walking_paths.length == 0){
             var x = 30;
             var y = hScr / 4 + 256 + 10;
             var bs = new Bystander(x, y);
             bs.ghost = false;
             this.add_entity(bs);
         }else{
-            var indexpath = Math.floor(Math.random() * game.level.json.map.walking_paths.length);
-            var path = game.level.json.map.walking_paths[indexpath];
+            var indexpath = Math.floor(Math.random() * game.level.walking_paths.length);
+            var path = game.level.walking_paths[indexpath];
             var indexpoint = Math.floor(Math.random() * (path.points.length-1))
             this.add_entity(new Bystander(0, 0, path, indexpoint));
         }

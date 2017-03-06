@@ -1,29 +1,191 @@
-{
-    "map":  {
-        "name": "Test map number two",
-        "image":"resources/map2.png",
-        "area": {
-            "x": 0,
-            "y": 278,
-            "w": 761,
-            "h": 234
-        },
-        "nogo":[
-        {"x":654, "y":234, "w": 43, "h": 104},
-        {"x":302, "y":278, "w": 29, "h": 14},
-        {"x":586, "y":278, "w": 29, "h": 14}
-        ],
-        "crowd_level": 0.3,
-        "policeness": 1,
-        "greenareas": [{
-            "x": 274,
-            "y": 278,
-            "w": 371,
-            "h": 52,
-            "bonus": 2.5
+{ "height":1,
+ "layers":[
+        {
+         "data":[1],
+         "height":1,
+         "name":"map",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":1,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":0,
+         "name":"path",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":0,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":0,
+         "name":"nogo",
+         "objects":[
+                {
+                 "height":16,
+                 "id":16,
+                 "name":"",
+                 "rotation":0,
+                 "type":"nogo",
+                 "visible":true,
+                 "width":30,
+                 "x":301,
+                 "y":275
+                }, 
+                {
+                 "height":16,
+                 "id":17,
+                 "name":"",
+                 "rotation":0,
+                 "type":"nogo",
+                 "visible":true,
+                 "width":30,
+                 "x":585,
+                 "y":275
+                }, 
+                {
+                 "height":105,
+                 "id":19,
+                 "name":"",
+                 "properties":
+                    {
+                     "test":"test"
+                    },
+                 "propertytypes":
+                    {
+                     "test":"string"
+                    },
+                 "rotation":0,
+                 "type":"nogo",
+                 "visible":true,
+                 "width":33.3333,
+                 "x":658,
+                 "y":232
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":0,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":0,
+         "name":"area",
+         "objects":[
+                {
+                 "height":238,
+                 "id":21,
+                 "name":"",
+                 "rotation":0,
+                 "type":"area",
+                 "visible":true,
+                 "width":798.333333333333,
+                 "x":-41,
+                 "y":277
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":0,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":1,
+         "name":"teleport",
+         "objects":[
+                {
+                 "height":512,
+                 "id":25,
+                 "name":"",
+                 "properties":
+                    {
+                     "to_map":"resources\/map\/map1.json",
+                     "to_x":970,
+                     "to_y":""
+                    },
+                 "propertytypes":
+                    {
+                     "to_map":"string",
+                     "to_x":"int",
+                     "to_y":"string"
+                    },
+                 "rotation":0,
+                 "type":"teleport",
+                 "visible":true,
+                 "width":5,
+                 "x":0,
+                 "y":0
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":1,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":1,
+         "name":"greenarea",
+         "objects":[
+                {
+                 "height":51.6666666666667,
+                 "id":29,
+                 "name":"",
+                 "rotation":0,
+                 "type":"greenarea",
+                 "visible":true,
+                 "width":371,
+                 "x":273,
+                 "y":278
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":1,
+         "x":0,
+         "y":0
         }],
-        "teleports": [
-            {"x":0, "y": 278, "w": 5, "h": 234, "to_map": "resources/map/map1.json", "to_x": 960, "to_y": null }
-        ]
-    }
+ "nextobjectid":31,
+ "orientation":"orthogonal",
+ "properties":
+    {
+     "crowd_level":"0.3",
+     "policeness":"1"
+    },
+ "propertytypes":
+    {
+     "crowd_level":"string",
+     "policeness":"string"
+    },
+ "renderorder":"right-down",
+ "tileheight":512,
+ "tilesets":[
+        {
+         "columns":1,
+         "firstgid":1,
+         "image":"..\/map2.png",
+         "imageheight":512,
+         "imagewidth":1024,
+         "margin":0,
+         "name":"firstmap",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":512,
+         "tilewidth":1024
+        }],
+ "tilewidth":1024,
+ "version":1,
+ "width":1
 }

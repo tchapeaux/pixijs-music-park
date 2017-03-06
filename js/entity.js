@@ -87,14 +87,14 @@ Entity.prototype.collide_with = function(ent) {
     hitboxThis = {
         'x': this.position.x + this.hitbox.left,
         'y': this.position.y + this.hitbox.top,
-        'w': this.hitbox.width,
-        'h': this.hitbox.height
+        'width': this.hitbox.width,
+        'height': this.hitbox.height
     };
     hitboxEnt = {
         'x': ent.position.x + ent.hitbox.left,
         'y': ent.position.y + ent.hitbox.top,
-        'w': ent.hitbox.width,
-        'h': ent.hitbox.height
+        'width': ent.hitbox.width,
+        'height': ent.hitbox.height
     };
     return intersectRectangles(hitboxThis, hitboxEnt);
 }
