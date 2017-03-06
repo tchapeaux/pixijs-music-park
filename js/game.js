@@ -1,3 +1,5 @@
+"use strict";
+
 function Game() {
     this.entities = [];
     this.level = null;
@@ -7,7 +9,7 @@ function Game() {
     this.loadmap("resources/map/map1.json");
 
     this.nextteleport = null;
-    
+
     this.musicband = new MusicBand();
 }
 
@@ -57,7 +59,7 @@ Game.prototype.loadmap_finish = function() {
         this.player.set_position(this.nextteleport.to_x == "" ? this.player.position.x : this.nextteleport.to_x, this.nextteleport.to_y == "" ? this.player.position.y : this.nextteleport.to_y);
     }
     this.nextteleport = null;
-    
+
     this.crowd = new Crowd();
 
     this.level_loaded = true;
@@ -119,10 +121,10 @@ Game.prototype.update = function(ds) {
             this.loadmap(this.nextteleport.jsonpath);
             return;
         }
-        
+
         this.crowd.update(ds);
         this.musicband.update(ds);
-        
+
         //update zindex positionning
         stage.children.sort(function(a,b) {
             a.zIndex = a.zIndex || 0;

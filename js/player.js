@@ -1,3 +1,5 @@
+"use strict";
+
 var Player = function() {
     Entity.call(this);
     this.name = "Player";
@@ -29,7 +31,7 @@ Player.prototype.computemoves = function(ds) {
         this.base_speed = 500;
     else
         this.base_speed = 100;
-    
+
     this.velocity.x = this.base_speed * direction_x * ds;
     this.velocity.y = this.base_speed * direction_y * ds;
 }

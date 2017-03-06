@@ -1,3 +1,5 @@
+"use strict";
+
 function intersectRectangles(rect1, rect2) {
     // Returns true if rect1 and rect2 intersects
     var testLeft = rect1.x <= (rect2.x + rect2.width);
@@ -10,7 +12,6 @@ function intersectRectangles(rect1, rect2) {
     } else {
         return false;
     }
-
 }
 
 // Return true if rect1 fully contains rect2
@@ -36,4 +37,3 @@ function normalizeVector(a, length) {
     var normalized = new PIXI.Point(a.x / length, a.y / length);
     return normalized;
 }
-

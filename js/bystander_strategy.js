@@ -1,3 +1,5 @@
+"use strict";
+
 var BystanderRandomWalkingStrategy = function(caller) {
     this.owner = caller;
     this.target = null;
@@ -37,16 +39,6 @@ BystanderRandomWalkingStrategy.prototype.compute = function(ds) {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 var BystanderFollowPathStrategy = function(caller, path, starting_point) {
@@ -90,5 +82,3 @@ BystanderFollowPathStrategy.prototype.compute = function(ds) {
         }
     }
 }
-
-

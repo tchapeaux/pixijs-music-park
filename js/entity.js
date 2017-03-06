@@ -1,3 +1,5 @@
+"use strict";
+
 var Entity = function() {
     this.sprite = null;
     this.position = new PIXI.Point(0, 0);
@@ -72,7 +74,7 @@ Entity.prototype.move_to = function(gotopoint, ds) {
         this.velocity.x = norm.x * this.base_speed * ds;
         this.velocity.y = norm.y * this.base_speed * ds;
     }
-    
+
     //~ console.log(this.velocity);
 }
 

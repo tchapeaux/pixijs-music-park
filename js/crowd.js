@@ -1,3 +1,5 @@
+"use strict";
+
 function Crowd() {
     this.peoples = [];
 }

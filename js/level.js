@@ -58,7 +58,6 @@ var Level = function (jsonfile) {
 
         level.crowdLevel = level.json.properties.crowd_level;
 
-
         // Uncomment below for debug display
         level.ground = new PIXI.Graphics();
         level.ground.beginFill(0xFFFFFF, 0.5);
