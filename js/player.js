@@ -27,6 +27,4 @@ Player.prototype.computemoves = function(ds) {
     }
     this.velocity.x = this.base_speed * direction_x * ds;
     this.velocity.y = this.base_speed * direction_y * ds;
-
-    this.set_position(this.position.x + this.velocity.x, this.position.y + this.velocity.y);
 }

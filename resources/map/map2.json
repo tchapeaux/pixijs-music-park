@@ -13,7 +13,7 @@
         {"x":302, "y":278, "w": 29, "h": 14},
         {"x":586, "y":278, "w": 29, "h": 14}
         ],
-        "crowd-level": 0.3,
+        "crowd_level": 0.3,
         "policeness": 1,
         "greenareas": [{
             "x": 274,

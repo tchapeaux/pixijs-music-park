@@ -3,7 +3,8 @@
 var Level = function(jsonfile) {
     this.ready = false;
     this.container = new PIXI.Container();
-
+    this.crowdLevel = 1;
+    
     var level = this;  // make 'this' accessible in scope
     $.getJSON(jsonfile, "", function(data) {
         level.ready = true;
@@ -11,12 +12,14 @@ var Level = function(jsonfile) {
         console.log("Loaded", level.json);
 
         var bgTexture = new PIXI.Sprite.fromImage(level.json.map.image);
+        bgTexture.zIndex = 0;
         bgTexture.position.x = 0;
         bgTexture.position.y = 0;
         level.container.addChild(bgTexture);
 
         level.teleports = level.json.map.teleports;
-
+        level.crowdLevel = level.json.map.crowd_level;
+        
         var area = level.json.map.area;
 
         level.area = new PIXI.Rectangle(area.x, area.y, area.w, area.h);

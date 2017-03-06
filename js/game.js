@@ -31,7 +31,7 @@ Game.prototype.loadmap = function(map){
         }
     }
     this.entities = [];
-
+    stage.removeChildren();
     // Load level and place player
     this.level = new Level(map);
     this.level_loaded = false;
@@ -59,6 +59,12 @@ Game.prototype.loadmap_finish = function() {
     this.crowd = new Crowd();
 
     this.level_loaded = true;
+    for(var i=0; i < (10 * this.level.crowdLevel); i++){
+        var indexpath = Math.floor(Math.random() * game.level.json.map.walking_paths.length);
+        var path = game.level.json.map.walking_paths[indexpath];
+        var indexpoint = Math.floor(Math.random() * (path.points.length-1))
+        this.add_entity(new Bystander(0, 0, path, indexpoint));
+    }
 }
 
 Game.prototype.update = function(ds) {
@@ -106,5 +112,12 @@ Game.prototype.update = function(ds) {
         
         this.crowd.update(ds);
         this.musicband.update(ds);
+        
+        //update zindex positionning
+        stage.children.sort(function(a,b) {
+            a.zIndex = a.zIndex || 0;
+            b.zIndex = b.zIndex || 0;
+            return a.zIndex - b.zIndex;
+        });
     }
 }
