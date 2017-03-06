@@ -86,13 +86,13 @@ Entity.prototype.collide_with = function(ent) {
     }
 
     // basic rectangle collision between both hitboxes
-    hitboxThis = {
+    var hitboxThis = {
         'x': this.position.x + this.hitbox.left,
         'y': this.position.y + this.hitbox.top,
         'width': this.hitbox.width,
         'height': this.hitbox.height
     };
-    hitboxEnt = {
+    var hitboxEnt = {
         'x': ent.position.x + ent.hitbox.left,
         'y': ent.position.y + ent.hitbox.top,
         'width': ent.hitbox.width,

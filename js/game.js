@@ -27,7 +27,7 @@ Game.prototype.loadmap = function(map){
     }
     for(var i = 0; i < this.entities.length; i++)
     {
-        ent = this.entities[i];
+        var ent = this.entities[i];
         if (!ent instanceof Player) {
             ent.should_delete = true;
         }
