@@ -1,3 +1,5 @@
+"use strict";
+
 var Entity = function() {
     this.sprite = null;
     this.position = new PIXI.Point(0, 0);
@@ -72,7 +74,7 @@ Entity.prototype.move_to = function(gotopoint, ds) {
         this.velocity.x = norm.x * this.base_speed * ds;
         this.velocity.y = norm.y * this.base_speed * ds;
     }
-    
+
     //~ console.log(this.velocity);
 }
 
@@ -84,13 +86,13 @@ Entity.prototype.collide_with = function(ent) {
     }
 
     // basic rectangle collision between both hitboxes
-    hitboxThis = {
+    var hitboxThis = {
         'x': this.position.x + this.hitbox.left,
         'y': this.position.y + this.hitbox.top,
         'width': this.hitbox.width,
         'height': this.hitbox.height
     };
-    hitboxEnt = {
+    var hitboxEnt = {
         'x': ent.position.x + ent.hitbox.left,
         'y': ent.position.y + ent.hitbox.top,
         'width': ent.hitbox.width,

@@ -1,3 +1,5 @@
+"use strict";
+
 var Teleport = function(x, y, w, h, jsonpath, to_x, to_y) {
     Entity.call(this);
     this.hitbox = new PIXI.Rectangle(0, 0, w, h);

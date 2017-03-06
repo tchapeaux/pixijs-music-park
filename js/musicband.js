@@ -1,3 +1,5 @@
+"use strict";
+
 function MusicBand() {
     // Define music tracks. They will be started in update() loop when they are loaded
     // Volume set to 0 at they are supposed to play silently before being triggered
@@ -27,6 +29,9 @@ function MusicBand() {
 MusicBand.prototype.toggleMusicTrack = function(track) {
     // Currently: just enable it (TODO real toggle)
     track.volume(1);
+    var from_vol = track.volume();
+    var to_vol = 1 - from_vol;
+    track.fade(from_vol, to_vol, 1000);
 }
 
 MusicBand.prototype.update = function(ds) {
@@ -64,5 +69,4 @@ MusicBand.prototype.update = function(ds) {
         this.music_tracks.ukulele_flute.play()
         this.music_tracks.voices.play()
     }
-
 }
