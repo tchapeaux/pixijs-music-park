@@ -3,22 +3,22 @@ function MusicBand() {
     // Volume set to 0 at they are supposed to play silently before being triggered
     this.music_tracks = {};
     this.music_tracks.guitar = new Howl({
-        src: ['resources/audio_raw/gravityfall_jam_guitar.ogg'],
+        src: ['resources/audio/gravityfall_jam_guitar.ogg'],
         volume: 0,
         loop: false,
     });
     this.music_tracks.drums = new Howl({
-        src: ['resources/audio_raw/gravityfall_jam_drums.ogg'],
+        src: ['resources/audio/gravityfall_jam_drums.ogg'],
         volume: 0,
         loop: false,
     });
     this.music_tracks.ukulele_flute = new Howl({
-        src: ['resources/audio_raw/gravityfall_jam_ukulele_flute.ogg'],
+        src: ['resources/audio/gravityfall_jam_ukulele_flute.ogg'],
         volume: 0,
         loop: false,
     });
     this.music_tracks.voices = new Howl({
-        src: ['resources/audio_raw/gravityfall_jam_voices.ogg'],
+        src: ['resources/audio/gravityfall_jam_voices.ogg'],
         volume: 0,
         loop: false,
     });

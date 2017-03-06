@@ -1,7 +1,7 @@
 thirdparty/
 .vscode
 *.zip
-resources/audio_raw/
+resources/audio*
 
 # Windows image file caches
 Thumbs.db
