@@ -13,6 +13,8 @@ function Bystander(start_x, start_y, path, starting_point) {
     
     this.base_speed = 30 + (Math.random()) * 40;
     
+    this.set_position(start_x, start_y);
+    
     if(path != null)
     {
         this.behavior = new BystanderFollowPathStrategy(this, path, starting_point);

@@ -60,10 +60,18 @@ Game.prototype.loadmap_finish = function() {
 
     this.level_loaded = true;
     for(var i=0; i < (10 * this.level.crowdLevel); i++){
-        var indexpath = Math.floor(Math.random() * game.level.json.map.walking_paths.length);
-        var path = game.level.json.map.walking_paths[indexpath];
-        var indexpoint = Math.floor(Math.random() * (path.points.length-1))
-        this.add_entity(new Bystander(0, 0, path, indexpoint));
+        if(game.level.json.map.walking_paths == null){
+            var x = 30;
+            var y = hScr / 4 + 256 + 10;
+            var bs = new Bystander(x, y);
+            bs.ghost = false;
+            this.add_entity(bs);
+        }else{
+            var indexpath = Math.floor(Math.random() * game.level.json.map.walking_paths.length);
+            var path = game.level.json.map.walking_paths[indexpath];
+            var indexpoint = Math.floor(Math.random() * (path.points.length-1))
+            this.add_entity(new Bystander(0, 0, path, indexpoint));
+        }
     }
 }
 
