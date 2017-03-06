@@ -24,3 +24,16 @@ function containsRectangle(rect1, rect2) {
     }
     return false;
 }
+
+function getDistanceBetween(va, vb) {
+    var a = va.x - vb.x;
+    var b = va.y - vb.y;
+    var tosqrt = (a * a) + (b * b);
+    return Math.sqrt(tosqrt);
+}
+
+function normalizeVector(a, length) {
+    var normalized = new PIXI.Point(a.x / length, a.y / length);
+    return normalized;
+}
+

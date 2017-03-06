@@ -1,26 +1,31 @@
-function Bystander(start_x, start_y) {
-    Entity.call(this);
-    this.sprite = new PIXI.Sprite.fromImage("resources/bystander.png");
-    this.hitbox = new PIXI.Rectangle(0, 0, 10, 10);
-    this.sprite.scale = new PIXI.Point(0.5, 0.5);
-    this.set_position(start_x, start_y);
+"use strict";
 
+function Bystander(start_x, start_y, path, starting_point) {
+    Entity.call(this);
+    this.ghost = true;
+    this.sprite = new PIXI.Sprite.fromImage("resources/bystander.png");
+    this.hitbox = new PIXI.Rectangle(15, 35, 25, 10);
+    this.sprite.scale = new PIXI.Point(0.5, 0.5);
+    
+    this.satisfaction = 0;
+    this.min_satisfaction = 100; // minimum statisfaction level to stop being such a cry baby
     this.listening_to_music = false;
-    this.target = null;
+    
+    this.base_speed = 30 + (Math.random()) * 40;
+    
+    if(path != null)
+    {
+        this.behavior = new BystanderFollowPathStrategy(this, path, starting_point);
+    }else{
+        this.behavior = new BystanderRandomWalkingStrategy(this);
+    }
 }
 
 Bystander.prototype = Object.create(Entity.prototype);
 Bystander.prototype.constructor = Bystander;
 
-Bystander.prototype.get_target = function() {
-    // For now : find a random point near them
-    var new_x = this.position.x + (-0.5 + Math.random()) * 100;
-    var new_y = this.position.y + (-0.5 + Math.random()) * 100;
-    this.target = new PIXI.Point(new_x, new_y);
-}
+
 
 Bystander.prototype.computemoves = function(ds) {
-    if (this.target === null) {
-        this.target = this.get_target();
-    }
+    this.behavior.compute(ds);
 }
