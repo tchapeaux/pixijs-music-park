@@ -67,14 +67,28 @@ Game.prototype.loadmap_finish = function() {
         if(game.level.walking_paths.length == 0){
             var x = 30;
             var y = hScr / 4 + 256 + 10;
-            var bs = new Bystander(x, y);
+            var personality = getBystanderPersonality();
+            var bs = new Bystander(x, y, personality);
             bs.ghost = false;
             this.add_entity(bs);
-        }else{
-            var indexpath = Math.floor(Math.random() * game.level.walking_paths.length);
-            var path = game.level.walking_paths[indexpath];
-            var indexpoint = Math.floor(Math.random() * (path.points.length-1))
-            this.add_entity(new Bystander(0, 0, path, indexpoint));
+        } else {
+            // get a personality for bystander
+            var personality = getBystanderPersonality();
+            // pick a path according to personality
+            // first get all the possible paths
+            var personality_paths = [];
+            for (var j = 0; j < game.level.walking_paths.length; j++) {
+                var currpath = game.level.walking_paths[j];
+                if (currpath.personality == "any" || currpath.personality.indexOf(personality) != -1) {
+                    personality_paths.push(currpath);
+                }
+            }
+            // then pick a random one in that list
+            var indexpath = Math.floor(Math.random() * personality_paths.length);
+            var path = personality_paths[indexpath];
+            // finally, pick a random point on that path as a starting point
+            var indexpoint = Math.floor(Math.random() * (path.points.length - 1))
+            this.add_entity(new Bystander(0, 0, personality, path, indexpoint));
         }
     }
 }

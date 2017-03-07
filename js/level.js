@@ -51,7 +51,7 @@ var Level = function (jsonfile) {
             } else if (layer.name == "path") {
                 for (var j = 0; j < layer.objects.length; j++) {
                     var obj = layer.objects[j];
-                    level.walking_paths.push({ "start_x": obj.x, "start_y": obj.y, "points": obj.polyline });
+                    level.walking_paths.push({ "start_x": obj.x, "start_y": obj.y, "points": obj.polyline, "personality": obj.properties !== undefined && obj.properties.personality !== undefined ? obj.properties.personality : "any" });
                 }
             }
         }

@@ -6,7 +6,7 @@
          "name":"map",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":1,
          "x":0,
          "y":0
@@ -77,6 +77,18 @@
                          "x":-1092,
                          "y":-14.6666666666666
                         }],
+                 "properties":
+                    {
+                     "waiting_points":"1;6;10",
+                     "waiting_randomness":"0.1,0.1,0.1",
+                     "waiting_timer":"5;10;5"
+                    },
+                 "propertytypes":
+                    {
+                     "waiting_points":"string",
+                     "waiting_randomness":"string",
+                     "waiting_timer":"string"
+                    },
                  "rotation":0,
                  "type":"path",
                  "visible":true,
@@ -251,7 +263,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":0,
          "x":0,
          "y":0
@@ -332,7 +344,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":1,
          "x":0,
          "y":0
@@ -355,7 +367,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":1,
          "x":0,
          "y":0

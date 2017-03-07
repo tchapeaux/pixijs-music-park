@@ -6,7 +6,7 @@
          "name":"map",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":1,
          "x":0,
          "y":0
@@ -125,6 +125,14 @@
                          "x":1,
                          "y":-20
                         }],
+                 "properties":
+                    {
+                     "personality":"lost"
+                    },
+                 "propertytypes":
+                    {
+                     "personality":"string"
+                    },
                  "rotation":0,
                  "type":"path",
                  "visible":true,
@@ -153,6 +161,14 @@
                          "x":1073,
                          "y":13
                         }],
+                 "properties":
+                    {
+                     "personality":"straight,none"
+                    },
+                 "propertytypes":
+                    {
+                     "personality":"string"
+                    },
                  "rotation":0,
                  "type":"path",
                  "visible":true,
@@ -253,12 +269,68 @@
                          "x":1067,
                          "y":4
                         }],
+                 "properties":
+                    {
+                     "personality":"shy"
+                    },
+                 "propertytypes":
+                    {
+                     "personality":"string"
+                    },
                  "rotation":0,
                  "type":"path",
                  "visible":true,
                  "width":0,
                  "x":-20,
                  "y":301
+                }, 
+                {
+                 "height":0,
+                 "id":32,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-192,
+                         "y":0
+                        }, 
+                        {
+                         "x":-372,
+                         "y":-8
+                        }, 
+                        {
+                         "x":-567,
+                         "y":-3
+                        }, 
+                        {
+                         "x":-789,
+                         "y":7
+                        }, 
+                        {
+                         "x":-983,
+                         "y":-1
+                        }, 
+                        {
+                         "x":-1074,
+                         "y":-9
+                        }],
+                 "properties":
+                    {
+                     "personality":"straight,none"
+                    },
+                 "propertytypes":
+                    {
+                     "personality":"string"
+                    },
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":0,
+                 "x":1042,
+                 "y":433
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -326,7 +398,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":0,
          "x":0,
          "y":0
@@ -349,7 +421,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":0,
          "x":0,
          "y":0
@@ -407,7 +479,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":1,
          "x":0,
          "y":0
@@ -441,12 +513,12 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "width":1,
          "x":0,
          "y":0
         }],
- "nextobjectid":31,
+ "nextobjectid":33,
  "orientation":"orthogonal",
  "properties":
     {
