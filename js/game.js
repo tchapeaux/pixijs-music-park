@@ -19,6 +19,13 @@ Game.prototype.add_entity = function(ent){
         stage.addChild(ent.sprite);
 }
 
+Game.prototype.remove_entity = function(ent) {
+    array_remove(this.entities, ent);
+    if (ent.sprite != null) {
+        stage.removeChild(ent.sprite);
+    }
+};
+
 Game.prototype.loadmap = function(map){
     // Clear previous state
     if(this.level != null)
@@ -147,3 +154,13 @@ Game.prototype.update = function(ds) {
         });
     }
 }
+
+Game.prototype.keyUp = function(keycode) {
+    // body...
+};
+
+Game.prototype.keyDown = function(keycode) {
+    if (keycode == 32 /* SPACE */) {
+        this.player.togglePlayState();
+    }
+};

@@ -30,19 +30,28 @@
                 $.ajaxSetup({ cache: false });
             });
             function init() {
+
                 keysPressed = new Set();
                 window.addEventListener('keydown', keyDown, false);
                 window.addEventListener('keyup', keyUp, false);
                 function keyDown(e) {
                     var keycode = e.keyCode;
                     keysPressed.add(keycode);
+                    game.keyDown(keycode);
                     e.preventDefault();
                 }
                 function keyUp(e) {
                     var keycode = e.keyCode;
                     keysPressed.delete(keycode);
+                    game.keyUp(keycode);
                     e.preventDefault();
                 }
+
+                function array_remove(arr, element) {
+                    var index = arr.indexOf(element);
+                    arr.slice(index, 1);
+                };
+
                 stage = new PIXI.Container();
                 wScr = document.getElementById("game-canvas").width;
                 hScr = document.getElementById("game-canvas").height;

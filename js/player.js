@@ -1,8 +1,13 @@
 "use strict";
 
+var player_play_states = ["idle", "playing"];
+var player_walk_states = ["idle", "walking"];
+
 var Player = function() {
     Entity.call(this);
     this.name = "Player";
+    this.play_state = "idle";
+    this.walk_state = "idle";
     this.sprite_idle = new PIXI.Sprite.fromImage("resources/djembeman.png");
     this.sprite_playing = new PIXI.Sprite.fromImage("resources/djembeman_playing.png");
     this.sprite = this.sprite_idle;
@@ -12,6 +17,13 @@ var Player = function() {
 
 Player.prototype = Object.create(Entity.prototype);
 Player.prototype.constructor = Player;
+
+Player.prototype.togglePlayState = function() {
+    game.remove_entity(this);
+    this.play_state = (this.play_state == "idle") ? "playing" : "idle";
+    this.sprite = (this.play_state == "idle") ? this.sprite_idle : this.sprite_playing;
+    game.add_entity(this);
+};
 
 Player.prototype.computemoves = function(ds) {
     // get keycode from http://keycode.info/
