@@ -34,11 +34,13 @@
                 window.addEventListener('keydown', keyDown, false);
                 window.addEventListener('keyup', keyUp, false);
                 function keyDown(e) {
-                    keysPressed.add(e.keyCode);
+                    var keycode = e.keyCode;
+                    keysPressed.add(keycode);
                     e.preventDefault();
                 }
                 function keyUp(e) {
-                    keysPressed.delete(e.keyCode);
+                    var keycode = e.keyCode;
+                    keysPressed.delete(keycode);
                     e.preventDefault();
                 }
                 stage = new PIXI.Container();
@@ -58,8 +60,10 @@
                 function update(timestamp) {
                     ds = (timestamp - oldTimeStamp) / 1000;
 
+                    // update game logic
                     game.update(ds);
 
+                    // render game state to screen
                     renderer.render(stage);
 
                     oldTimeStamp = timestamp;
